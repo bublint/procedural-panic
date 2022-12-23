@@ -1,3 +1,7 @@
+// The HealthBar script is a simple script that displays the current health of a player character as a slider
+// It has a public function to subtract damage from the player's health and updates the value of the slider accordingly
+// If the player's health reaches 0, it triggers an appropriate action such as a game over event
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,15 +26,6 @@ public class HealthBar : MonoBehaviour
         // Set the value of the health bar to the current health
         healthBar.value = currentHealth;
     }
-
-    //void Update()
-    //{
-    //    // Check if the player has taken damage
-    //    if (Input.GetKeyDown(KeyCode.F))
-    //    {
-    //        TakeDamage(20);
-    //    }
-    //}
 
     // Function to subtract damage from the player's current health
     public void TakeDamage(int damage)

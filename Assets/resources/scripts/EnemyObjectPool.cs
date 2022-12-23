@@ -1,3 +1,8 @@
+// The EnemyObjectPool script manages the instantiation and despawning of enemy game objects,
+// as well as keeping track of the number of enemies slain in each wave and advancing to the next wave
+// when the required number of enemies have been defeated. It also generates random positions near the player
+// character for enemy spawning.
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +14,16 @@ public class EnemyObjectPool : MonoBehaviour
     // The list of inactive enemy objects available for reuse
     private List<GameObject> inactiveEnemies;
 
+    // Reference to the waves script which manages on-screen information regarding the wave
     [SerializeField] private Waves waveManager;
 
+    // How many enemies have been slain in the current wave
     public int enemiesSlain;
 
+    // How many enemies should spawn in the wave
     [HideInInspector] public int enemiesToSpawn;
 
+    // Stores a value corresponding to which wave is currently active
     [HideInInspector] public int wave;
 
     // The maximum distance that the random position can be from the player character
@@ -79,6 +88,7 @@ public class EnemyObjectPool : MonoBehaviour
         TestForWaveClear();
     }
 
+    // Check to see if the requirements have been met to advance to the next wave
     public void TestForWaveClear()
     {
         if (enemiesSlain >= enemiesToSpawn)
@@ -105,6 +115,7 @@ public class EnemyObjectPool : MonoBehaviour
         return randomPosition;
     }
 
+    // Spawn a new wave with a certain number of enemies 
     public void SpawnWave()
     {
         enemiesToSpawn = enemiesToSpawn + wave;
